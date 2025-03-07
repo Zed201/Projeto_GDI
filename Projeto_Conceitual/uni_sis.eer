@@ -64,7 +64,7 @@
     <links xmi:type="eer:AttributeLink" xmi:id="_3ghPsNBcEe-Vg8L22VKIxA" source="_-IKO4NBYEe-Vg8L22VKIxA" target="_19KcANBbEe-Vg8L22VKIxA"/>
     <links xmi:type="eer:AttributeLink" xmi:id="_36fO4NBcEe-Vg8L22VKIxA" source="_-IKO4NBYEe-Vg8L22VKIxA" target="_1l_5MNBbEe-Vg8L22VKIxA"/>
     <links xmi:type="eer:AttributeLink" xmi:id="_cMkg4NBdEe-Vg8L22VKIxA" source="_4Le1ENBYEe-Vg8L22VKIxA" target="_reoAkNBbEe-Vg8L22VKIxA"/>
-    <links xmi:type="eer:RelationshipLink" xmi:id="_feaFENBdEe-Vg8L22VKIxA" source="_23SpUNBYEe-Vg8L22VKIxA" target="_dwmfcNBdEe-Vg8L22VKIxA"/>
+    <links xmi:type="eer:RelationshipLink" xmi:id="_feaFENBdEe-Vg8L22VKIxA" source="_23SpUNBYEe-Vg8L22VKIxA" target="_dwmfcNBdEe-Vg8L22VKIxA" cardinality="MANY"/>
     <links xmi:type="eer:RelationshipLink" xmi:id="_fy-m4NBdEe-Vg8L22VKIxA" source="_-IKO4NBYEe-Vg8L22VKIxA" target="_dwmfcNBdEe-Vg8L22VKIxA" participation="TOTAL" cardinality="MANY"/>
     <links xmi:type="eer:RelationshipLink" xmi:id="_L5dCQNBeEe-Vg8L22VKIxA" source="_-IKO4NBYEe-Vg8L22VKIxA" target="_JVURkNBeEe-Vg8L22VKIxA" cardinality="MANY" role="Tem como requesito"/>
     <links xmi:type="eer:RelationshipLink" xmi:id="_MSLrUNBeEe-Vg8L22VKIxA" source="_-IKO4NBYEe-Vg8L22VKIxA" target="_JVURkNBeEe-Vg8L22VKIxA" cardinality="MANY" role="É requesito de "/>
