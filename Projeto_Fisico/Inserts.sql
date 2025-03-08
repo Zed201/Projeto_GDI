@@ -3,7 +3,8 @@ VALUES (1, 'Carlos', 'Silva', endereco_t('Rua A', '12345678')),
        (2, 'Ana', 'Souza', endereco_t('Rua B', '87654321')),
        (3, 'Roberto', 'Oliveira', endereco_t('Rua C', '11223344')),
        (4, 'Mariana', 'Pereira', endereco_t('Rua D', '44332211')),
-       (5, 'Fernanda', 'Almeida', endereco_t('Rua E', '55667788'));
+       (5, 'Fernanda', 'Almeida', endereco_t('Rua E', '55667788')),
+       (6, 'Robson', 'Fidalgo', endereco_t('Rua C', '34123354'));
 
 -- Inserindo professores
 INSERT INTO professor (id, especializacao)
@@ -17,7 +18,8 @@ VALUES (3, 'Engenharia', 'Engenharia Civil');
 -- Inserindo alunos
 INSERT INTO aluno (id, curso_atual)
 VALUES (4, 'Ciência da Computação'),
-       (5, 'Engenharia Elétrica');
+       (5, 'Engenharia Elétrica'),
+       (6, 'Teatro');
 
 -- Inserindo telefones para alunos
 INSERT INTO telefones (id_aluno, numero)
@@ -47,7 +49,8 @@ VALUES (1, 101, 1),
 -- Inserindo disciplinas
 INSERT INTO disciplina (id, nome, carga_horaria)
 VALUES (201, 'Algoritmos', 60),
-       (202, 'Cálculo I', 90);
+       (202, 'Cálculo I', 90),
+       (203, 'F1(Física 1)', 75);
 
 -- Associando professores a disciplinas
 INSERT INTO ensina (id_professor, id_disciplina)
