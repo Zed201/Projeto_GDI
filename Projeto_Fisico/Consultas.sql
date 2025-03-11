@@ -50,3 +50,29 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Disciplina de ' || DI || ' com novo prof ' || NOME );
     END IF;
 END;
+
+-- Atualiza os Valores de requisito
+CREATE OR REPLACE PROCEDURE atualiza_requisito(
+    ID_1_OLD IN NUMBER,
+    ID_2_OLD IN NUMBER,
+    ID_1_NEW IN NUMBER,
+    ID_2_NEW IN NUMBER 
+)
+IS
+    Cont1 NUMBER := 0;
+    Cont2 NUMBER := 0;
+BEGIN
+
+    SELECT COUNT(*) INTO Cont1 FROM DISCIPLINA WHERE ID = ID_1_NEW;
+    SELECT COUNT(*) INTO Cont2 FROM DISCIPLINA WHERE ID = ID_2_NEW;
+
+    IF Cont1 > 0 AND Cont2 > 0 THEN
+        UPDATE REQUISITO
+        SET ID_DISCIPLINA1 = ID_1_NEW, ID_DISCIPLINA2 = ID_2_NEW
+        WHERE ID_DISCIPLINA1 = ID_1_OLD AND ID_DISCIPLINA2 = ID_2_OLD;
+        COMMIT;
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Alguma DISCIPLINA NÃO está cadastrada!');
+    END IF;
+END atualiza_requisito;
+/
