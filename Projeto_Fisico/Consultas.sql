@@ -17,15 +17,6 @@ CREATE OR REPLACE PROCEDURE projetos_prof_cargo (prof_id INTEGER, cargo_cod INTE
 -- Apenas executa o procedimento acima para 1,1 deve mostrar no console 101 e para 2,2 deve mostrar 102
 EXEC projetos_prof_cargo(2, 2);
 
-
--- Alunos com avalicacao de qual disciplica e qual nota
-SELECT A.NOME, AV.TIPO, AV.NOTA, AV.NOME_DISCIPLINA FROM (
-    SELECT IA.ID, P.NOME FROM ALUNO IA INNER JOIN PESSOA P ON P.ID = IA.ID
-) A INNER JOIN (
-    SELECT AVI.ID_ALUNO, AVI.NOTA, AVI.TIPO, D.NOME AS NOME_DISCIPLINA FROM AVALIACAO AVI INNER JOIN DISCIPLINA D ON AVI.ID_DISCIPLINA = D.ID
-) AV ON A.ID = AV.ID_ALUNO;
-
-
 -- Juncao externa, alunos ainda sem prova e com inner join para ver o nome deles
 SELECT AL.ID, AL.NOME FROM (
 		SELECT IA.ID, P.NOME FROM ALUNO IA INNER JOIN PESSOA P ON P.ID = IA.ID
