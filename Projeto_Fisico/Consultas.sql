@@ -32,7 +32,7 @@ SELECT AL.ID, AL.NOME FROM (
 	) AL LEFT OUTER JOIN AVALIACAO AV ON AV.ID_ALUNO = AL.ID WHERE AV.ID IS NULL;
 
 
--- Semi Juncao, selecionar as disciplinas sem avaliacao
+-- Semi Juncao, selecionar as disciplinas com avaliacao
 SELECT * FROM DISCIPLINA D WHERE D.ID IN (SELECT A.ID_DISCIPLINA FROM AVALIACAO A);
 
 
