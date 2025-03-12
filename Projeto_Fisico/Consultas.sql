@@ -33,7 +33,7 @@ SELECT AL.ID, AL.NOME FROM (
 
 
 -- Semi Juncao, selecionar as disciplinas sem avaliacao
-SELECT * FROM DISCIPLINA D WHERE D.ID NOT IN (SELECT A.ID_DISCIPLINA FROM AVALIACAO A);
+SELECT * FROM DISCIPLINA D WHERE D.ID IN (SELECT A.ID_DISCIPLINA FROM AVALIACAO A);
 
 
 -- Trigger de mundaça de professor que ensina disciplina
