@@ -142,9 +142,8 @@ CREATE TABLE matricula (
 CREATE TABLE assume (
     id_professor   INTEGER,
     codigo_projeto INTEGER,
-    codigo_cargo   INTEGER,
-    CONSTRAINT pk_assume PRIMARY KEY (id_professor, codigo_projeto, codigo_cargo),
-    CONSTRAINT unique_assume UNIQUE(id_professor, codigo_cargo),
+    codigo_cargo   INTEGER NOT NULL,
+    CONSTRAINT pk_assume PRIMARY KEY (id_professor, codigo_projeto),
     CONSTRAINT fk_assume_professor FOREIGN KEY (id_professor) REFERENCES professor (id) ON DELETE CASCADE,
     CONSTRAINT fk_assume_projeto FOREIGN KEY (codigo_projeto) REFERENCES projeto (codigo),
     CONSTRAINT fk_assume_cargo FOREIGN KEY (codigo_cargo) REFERENCES cargo (codigo)
