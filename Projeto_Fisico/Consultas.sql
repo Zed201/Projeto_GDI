@@ -78,3 +78,8 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Alguma DISCIPLINA NÃO está cadastrada!');
     END IF;
 END atualiza_requisito;
+
+-- Anti Join (Saber quais as disciplinas sem avaliações)
+SELECT D.nome
+FROM disciplina D
+WHERE D.id NOT IN(SELECT A.id_disciplina FROM avaliacao A WHERE A.id_disciplina IS NOT NULL)
