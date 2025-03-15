@@ -83,3 +83,20 @@ END atualiza_requisito;
 SELECT D.nome
 FROM disciplina D
 WHERE D.id NOT IN(SELECT A.id_disciplina FROM avaliacao A WHERE A.id_disciplina IS NOT NULL)
+
+-- Procedure de Subconsulta tipo linha (Saber os id dos coordenadores que tem o mesmo departamento e curso)
+CREATE OR REPLACE PROCEDURE coord_dep_e_curso (coord_id INTEGER) IS
+    CURSOR cur_coordenadores IS
+        SELECT C.ID
+        FROM coordenador C
+        WHERE (C.departamento, C.nome_curso) = 
+              (SELECT C2.departamento, C2.nome_curso
+               FROM coordenador C2
+               WHERE C2.ID = coord_id);
+    
+BEGIN
+    FOR rec IN cur_coordenadores LOOP
+        DBMS_OUTPUT.PUT_LINE('ID: ' || rec.ID);
+    END LOOP;
+END;
+/
