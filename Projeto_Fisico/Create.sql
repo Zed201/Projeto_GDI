@@ -106,32 +106,26 @@ CREATE TABLE matricula (
     id_disciplina INTEGER,
     codigo        INTEGER NOT NULL,
     dt_matricula  DATE    NOT NULL,
-    CONSTRAINT pk_matricula PRIMARY KEY (id_aluno, id_disciplina, codigo),
+    CONSTRAINT pk_matricula PRIMARY KEY (id_aluno, id_disciplina),
     CONSTRAINT fk_matricula_disciplina FOREIGN KEY (id_disciplina) REFERENCES disciplina (id),
     CONSTRAINT fk_matricula_aluno FOREIGN KEY (id_aluno) REFERENCES aluno (id)
 );
 
 CREATE TABLE cota (
-    tipo INTEGER PRIMARY KEY
-);
-
-CREATE TABLE tem (
-    tipo_cota    INTEGER,
-    id_aluno      INTEGER,
-    id_disciplina INTEGER,
-    codigo        INTEGER NOT NULL,
-    CONSTRAINT pk_tem PRIMARY KEY (tipo_cota, id_aluno, id_disciplina, codigo),
-    CONSTRAINT fk_tem_cota FOREIGN KEY (tipo_cota) REFERENCES cota (tipo),
-    CONSTRAINT fk_tem_matricula FOREIGN KEY (id_aluno, id_disciplina, codigo) REFERENCES matricula (id_aluno, id_disciplina, codigo)
+    tipo INTEGER PRIMARY KEY,
+    id_aluno INTEGER UNIQUE NOT NULL,
+    id_disciplina INTEGER UNIQUE NOT NULL,
+    CONSTRAINT pk_tem PRIMARY KEY (tipo),
+    CONSTRAINT fk_tem_matricula FOREIGN KEY (id_aluno, id_disciplina) REFERENCES matricula (id_aluno, id_disciplina)
 );
 
 CREATE TABLE avaliacao (
-    id_disciplina INTEGER,
+    id_disciplina INTEGER NOT NULL,
     id_aluno      INTEGER,
-    id            INTEGER      NOT NULL,
+    id            INTEGER,
     tipo          VARCHAR(20),
     nota          NUMBER(3, 1) NOT NULL,
-    CONSTRAINT pk_avaliacao PRIMARY KEY (id_disciplina, id_aluno, id),
+    CONSTRAINT pk_avaliacao PRIMARY KEY (id_aluno, id),
     CONSTRAINT fk_avaliacao_disciplina FOREIGN KEY (id_disciplina) REFERENCES disciplina (id),
     CONSTRAINT fk_avaliacao_aluno FOREIGN KEY (id_aluno) REFERENCES aluno (id)
 );
