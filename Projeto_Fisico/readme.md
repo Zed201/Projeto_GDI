@@ -14,7 +14,17 @@ HAVING AVG(A.NOTA) > 7;
 ```
 
 ```
-
++-------------------------+------------+
+| NOME                    | AVG(A.NOTA)|
++-------------------------+------------+
+| Química Geral           | 8          |
+| Literatura Brasileira   | 9.5        |
+| Física II               | 7.5        |
+| Estatística             | 9          |
+| Direito Constitucional  | 8.5        |
+| Algoritmos              | 8.5        |
+| Cálculo I               | 9          |
++-------------------------+------------+
 ```
 
 ## Junção externa
@@ -34,7 +44,11 @@ WHERE AV.ID IS NULL;
 ```
 
 ```
-
++----+--------+
+| ID | NOME   |
++----+--------+
+| 6  | Robson |
++----+--------+
 ```
 
 ## Semi Junção
@@ -50,10 +64,23 @@ WHERE D.ID IN
 ```
 
 ```
-
++-----+-------------------------+--------------+
+| ID  | NOME                    | CARGA_HORARIA |
++-----+-------------------------+--------------+
+| 201 | Algoritmos              | 60           |
+| 202 | Cálculo I               | 90           |
+| 206 | Física II               | 75           |
+| 204 | Química Geral           | 60           |
+| 205 | Literatura Brasileira   | 45           |
+| 208 | Direito Constitucional  | 90           |
+| 209 | Psicologia Social       | 45           |
+| 207 | Estatística             | 60           |
++-----+-------------------------+--------------+
 ```
 
-## Retorna a quantidade de projetos por professor
+## Group by
+
+Retorna a quantidade de projetos por professor
 
 ```sql
 SELECT P.ID,
@@ -66,10 +93,20 @@ GROUP BY P.NOME,
 ```
 
 ```
-
++----+--------+-------------------+
+| ID | NOME   | NUMERO_DE_PROJETOS |
++----+--------+-------------------+
+| 1  | Carlos | 1                 |
+| 2  | Ana    | 1                 |
+| 7  | João   | 1                 |
+| 8  | Maria  | 1                 |
+| 9  | Pedro  | 1                 |
++----+--------+-------------------+
 ```
 
 ## Subconsulta do tipo escalar
+
+Matricula mais recente
 
 ```sql
 SELECT MAX(DT_MATRICULA) AS MATRICULA_RECENTE
@@ -77,14 +114,17 @@ FROM MATRICULA;
 ```
 
 ```
-
++----------------------+
+| MATRICULA_RECENTE    |
++----------------------+
+| 2024-02-08T00:00:00Z |
++----------------------+
 ```
 
 ## Subconsulta do tipo tabela
 
 ```sql
 SELECT A.ID_ALUNO,
-
     (SELECT NOME
      FROM PESSOA
      WHERE ID = A.ID_ALUNO) AS NOME,
@@ -100,7 +140,18 @@ AND A.NOTA = ALIAS.MAX_NOTA;
 ```
 
 ```
-
++----------+-----------+---------------+------+
+| ID_ALUNO | NOME      | ID_DISCIPLINA | NOTA |
++----------+-----------+---------------+------+
+| 4        | Mariana   | 201           | 8.5  |
+| 5        | Fernanda  | 202           | 9    |
+| 7        | João      | 206           | 7.5  |
+| 8        | Maria     | 204           | 8    |
+| 9        | Pedro     | 205           | 9.5  |
+| 10       | Lucia     | 208           | 8.5  |
+| 11       | Paulo     | 209           | 7    |
+| 12       | Carla     | 207           | 9    |
++----------+-----------+---------------+------+
 ```
 
 ## Anti Join
@@ -117,5 +168,9 @@ WHERE D.ID NOT IN
 ```
 
 ```
-
++-----------------+
+| NOME            |
++-----------------+
+| F1(Física 1)    |
++-----------------+
 ```
