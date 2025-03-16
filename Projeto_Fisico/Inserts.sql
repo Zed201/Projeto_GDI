@@ -71,14 +71,9 @@ VALUES (4, 201, 1, TO_DATE('2024-02-01', 'YYYY-MM-DD')),
        (5, 202, 2, TO_DATE('2024-02-02', 'YYYY-MM-DD'));
 
 -- Inserindo cotas
-INSERT INTO cota (tipo)
-VALUES (1),
-       (2);
-
--- Associando cotas a alunos matriculados
-INSERT INTO tem (tipo_cota, id_aluno, id_disciplina, codigo)
-VALUES (1, 4, 201, 1),
-       (2, 5, 202, 2);
+INSERT INTO cota (tipo, id_aluno, id_disciplina)
+VALUES (1, 4, 201),
+       (2, 5, 202);
 
 -- Inserindo avaliações
 INSERT INTO avaliacao (id_disciplina, id_aluno, id, tipo, nota)
