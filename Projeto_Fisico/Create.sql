@@ -112,7 +112,7 @@ CREATE TABLE matricula (
 );
 
 CREATE TABLE cota (
-    tipo INTEGER PRIMARY KEY,
+    tipo INTEGER,
     id_aluno INTEGER UNIQUE NOT NULL,
     id_disciplina INTEGER UNIQUE NOT NULL,
     CONSTRAINT pk_tem PRIMARY KEY (tipo),
