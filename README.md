@@ -34,13 +34,13 @@ Não possui nenhum requisito
 
 - [x] Group by/Having
 - [x] Junção interna
-- [ ] Junção externa
-- [ ] Semi junção
-- [ ] Anti-junção
+- [x] Junção externa
+- [x] Semi junção
+- [x] Anti-junção
 - [ ] Subconsultas
-  - [ ] Escalar
+  - [x] Escalar
   - [ ] Linha
-  - [ ] Tabela
+  - [x] Tabela
 - [ ] Operação de conjunto
 
 ### Tipos de Dados
