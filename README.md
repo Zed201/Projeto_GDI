@@ -24,7 +24,7 @@ O projeto consiste em criar um banco de dados desde o projeto conceitual até o 
 
 - [x] Herança (qualquer tipo) (**Pessoa para os Outros**: Herança entre uma classe genérica "Pessoa" e suas especializações, como aluno, professor, etc.)
 
-![Banco de Dados Conceitual](Projeto_Conceitual/Captura%20de%20tela%202025-03-06%20212700.png)
+![Banco de Dados Conceitual](Projeto_Conceitual/esquema.png)
 
 ## Projeto Lógico
 
