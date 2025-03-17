@@ -98,10 +98,10 @@ VALUES (201, 202),  -- Algoritmos é pré-requisito de Cálculo I
 
 -- Matriculando alunos em disciplinas
 INSERT INTO matricula (id_aluno, id_disciplina, codigo, dt_matricula)
-VALUES (9, 205, 5, TO_DATE('2024-02-05', 'YYYY-MM-DD')),
-       (10, 208, 6, TO_DATE('2024-02-06', 'YYYY-MM-DD')),
-       (11, 209, 7, TO_DATE('2024-02-07', 'YYYY-MM-DD')),
-       (12, 207, 8, TO_DATE('2024-02-08', 'YYYY-MM-DD'));
+VALUES (9, 205, TO_DATE('2024-02-05', 'YYYY-MM-DD')),
+       (10, 208, TO_DATE('2024-02-06', 'YYYY-MM-DD')),
+       (11, 209, TO_DATE('2024-02-07', 'YYYY-MM-DD')),
+       (12, 207, TO_DATE('2024-02-08', 'YYYY-MM-DD'));
 
 
 -- Inserindo cotas

@@ -104,9 +104,8 @@ CREATE TABLE requisito (
 CREATE TABLE matricula (
     id_aluno      INTEGER,
     id_disciplina INTEGER,
-    codigo        INTEGER NOT NULL,
     dt_matricula  DATE    NOT NULL,
-    CONSTRAINT pk_matricula PRIMARY KEY (id_aluno, id_disciplina),
+    CONSTRAINT pk_matricula PRIMARY KEY (id_aluno, id_disciplina, dt_matricula),
     CONSTRAINT fk_matricula_disciplina FOREIGN KEY (id_disciplina) REFERENCES disciplina (id),
     CONSTRAINT fk_matricula_aluno FOREIGN KEY (id_aluno) REFERENCES aluno (id)
 );

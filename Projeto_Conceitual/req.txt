@@ -1,6 +1,6 @@
 Atributo composto(Endereço em pessoa)
 Atributo multivalorado(Telefones em aluno)
-Atributo discriminador em relacionamento(Discriminador da Monitoria)
+Atributo discriminador em relacionamento(Data de matricula)
 
 Relacionamento 1:1(Tem cota)
 Relacionamento 1:N(Feito Por)
