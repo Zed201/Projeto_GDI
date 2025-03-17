@@ -1,14 +1,9 @@
--- Tipo para endereço
-CREATE OR REPLACE TYPE endereco_t AS OBJECT (
-    rua VARCHAR2(50),
-    cep VARCHAR2(8)
-);
-
 CREATE TABLE pessoa (
     id        INTEGER     PRIMARY KEY,
     nome      VARCHAR(30) NOT NULL,
     sobrenome VARCHAR(30) NOT NULL,
-    endereco  endereco_t
+    rua VARCHAR2(50),
+    cep VARCHAR2(8)
 );
 
 -- Tabela professor (subclasse de pessoa)
@@ -16,14 +11,6 @@ CREATE TABLE professor (
     id             INTEGER      PRIMARY KEY,
     especializacao VARCHAR(50),
     CONSTRAINT fk_professor_pessoa FOREIGN KEY (id) REFERENCES pessoa (id)
-);
-
--- Tabela coordenador (subclasse de pessoa)
-CREATE TABLE coordenador (
-    id           INTEGER     PRIMARY KEY,
-    departamento VARCHAR(30) NOT NULL,
-    nome_curso   VARCHAR(30) NOT NULL,
-    CONSTRAINT fk_coordenador_pessoa FOREIGN KEY (id) REFERENCES pessoa (id)
 );
 
 -- Tabela aluno (subclasse de pessoa)
@@ -44,7 +31,7 @@ CREATE TABLE telefones (
 -- Tabela monitor (Herda de pessoa)
 CREATE TABLE monitor (
     id INTEGER PRIMARY KEY,
-    CONSTRAINT fk_monitor_pessoa FOREIGN KEY (id) REFERENCES pessoa (id)
+    CONSTRAINT fk_monitor_aluno FOREIGN KEY (id) REFERENCES aluno (id)
 );
 
 CREATE TABLE projeto (
@@ -63,7 +50,7 @@ CREATE TABLE assume (
     codigo_cargo   INTEGER NOT NULL,
     CONSTRAINT pk_assume PRIMARY KEY (id_professor, codigo_projeto),
     CONSTRAINT fk_assume_professor FOREIGN KEY (id_professor) REFERENCES professor (id) ON DELETE CASCADE,
-    CONSTRAINT fk_assume_projeto FOREIGN KEY (codigo_projeto) REFERENCES projeto (codigo),
+    CONSTRAINT fk_assume_projeto FOREIGN KEY (codigo_projeto) REFERENCES projeto (codigo) ON DELETE CASCADE,
     CONSTRAINT fk_assume_cargo FOREIGN KEY (codigo_cargo) REFERENCES cargo (codigo)
 );
 
@@ -86,7 +73,6 @@ CREATE TABLE ensina (
 CREATE TABLE monitora (
     id_monitor INTEGER,
     id_disciplina INTEGER,
-    discriminador VARCHAR(30),
     CONSTRAINT pk_monitora PRIMARY KEY (id_monitor, id_disciplina),
     CONSTRAINT fk_monitora_professor FOREIGN KEY (id_monitor) REFERENCES monitor (id),
     CONSTRAINT fk_monitora_disciplina FOREIGN KEY (id_disciplina) REFERENCES disciplina (id)
@@ -101,21 +87,20 @@ CREATE TABLE requisito (
     CONSTRAINT fk_requisito_disciplina2 FOREIGN KEY (id_disciplina2) REFERENCES disciplina (id)
 );
 
+CREATE TABLE cota (
+    tipo INTEGER,
+    CONSTRAINT pk_cota PRIMARY KEY (tipo)
+);
+
 CREATE TABLE matricula (
     id_aluno      INTEGER,
     id_disciplina INTEGER,
     dt_matricula  DATE    NOT NULL,
+    tipo_cota     INTEGER UNIQUE,
     CONSTRAINT pk_matricula PRIMARY KEY (id_aluno, id_disciplina, dt_matricula),
     CONSTRAINT fk_matricula_disciplina FOREIGN KEY (id_disciplina) REFERENCES disciplina (id),
-    CONSTRAINT fk_matricula_aluno FOREIGN KEY (id_aluno) REFERENCES aluno (id)
-);
-
-CREATE TABLE cota (
-    tipo INTEGER,
-    id_aluno INTEGER UNIQUE NOT NULL,
-    id_disciplina INTEGER UNIQUE NOT NULL,
-    CONSTRAINT pk_tem PRIMARY KEY (tipo),
-    CONSTRAINT fk_tem_matricula FOREIGN KEY (id_aluno, id_disciplina) REFERENCES matricula (id_aluno, id_disciplina)
+    CONSTRAINT fk_matricula_aluno FOREIGN KEY (id_aluno) REFERENCES aluno (id),
+    CONSTRAINT fk_matricula_cota FOREIGN KEY (tipo_cota) REFERENCES cota (tipo)
 );
 
 CREATE TABLE avaliacao (
