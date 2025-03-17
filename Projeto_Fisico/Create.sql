@@ -6,6 +6,15 @@ CREATE TABLE pessoa (
     cep VARCHAR2(8)
 );
 
+-- Tabela coordenador (subclasse de pessoa)
+CREATE TABLE coordenador (
+    id           INTEGER     PRIMARY KEY,
+    departamento VARCHAR(30) NOT NULL,
+    nome_curso   VARCHAR(30) NOT NULL,
+    CONSTRAINT fk_coordenador_pessoa FOREIGN KEY (id) REFERENCES pessoa (id)
+);
+
+
 -- Tabela professor (subclasse de pessoa)
 CREATE TABLE professor (
     id             INTEGER      PRIMARY KEY,
