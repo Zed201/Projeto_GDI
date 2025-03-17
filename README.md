@@ -37,11 +37,11 @@ Não possui nenhum requisito
 - [x] Junção externa
 - [x] Semi junção
 - [x] Anti-junção
-- [ ] Subconsultas
+- [x] Subconsultas
   - [x] Escalar
-  - [ ] Linha
+  - [x] Linha
   - [x] Tabela
-- [ ] Operação de conjunto
+- [x] Operação de conjunto
 
 ### Tipos de Dados
 ```sql

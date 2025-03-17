@@ -15,19 +15,15 @@ HAVING AVG(A.NOTA) > 7;
 
 ```
 +-------------------------+------------+
-| NOME                    | AVG(A.NOTA)|
+|          NOME           | AVG(A.NOTA)|
 +-------------------------+------------+
-| Química Geral           | 8          |
-| Literatura Brasileira   | 9.5        |
-| Física II               | 7.5        |
-| Estatística             | 9          |
-| Direito Constitucional  | 8.5        |
-| Algoritmos              | 8.5        |
-| Cálculo I               | 9          |
+| Literatura Brasileira   |     9.5    |
+| Estatística             |     9.0    |
+| Direito Constitucional  |     8.5    |
 +-------------------------+------------+
 ```
 
-## Junção externa
+## Junção externa e Linha
 
 Alunos ainda sem prova e com inner join para ver o nome deles
 
@@ -65,16 +61,12 @@ WHERE D.ID IN
 
 ```
 +-----+-------------------------+--------------+
-| ID  | NOME                    | CARGA_HORARIA |
+| ID  |          NOME           | CARGA_HORARIA|
 +-----+-------------------------+--------------+
-| 201 | Algoritmos              | 60           |
-| 202 | Cálculo I               | 90           |
-| 206 | Física II               | 75           |
-| 204 | Química Geral           | 60           |
-| 205 | Literatura Brasileira   | 45           |
-| 208 | Direito Constitucional  | 90           |
-| 209 | Psicologia Social       | 45           |
-| 207 | Estatística             | 60           |
+| 205 | Literatura Brasileira   |      45      |
+| 207 | Estatística             |      60      |
+| 208 | Direito Constitucional  |      90      |
+| 209 | Psicologia Social       |      45      |
 +-----+-------------------------+--------------+
 ```
 
@@ -93,15 +85,14 @@ GROUP BY P.NOME,
 ```
 
 ```
-+----+--------+-------------------+
-| ID | NOME   | NUMERO_DE_PROJETOS |
-+----+--------+-------------------+
-| 1  | Carlos | 1                 |
-| 2  | Ana    | 1                 |
-| 7  | João   | 1                 |
-| 8  | Maria  | 1                 |
-| 9  | Pedro  | 1                 |
-+----+--------+-------------------+
++-----+--------+---------------------+
+| ID  |  NOME  | NUMERO_DE_PROJETOS  |
++-----+--------+---------------------+
+|  1  | Carlos |          1          |
+|  2  |  Ana   |          1          |
+|  7  |  João  |          1          |
+|  8  | Maria  |          1          |
++-----+--------+---------------------+
 ```
 
 ## Subconsulta do tipo escalar
@@ -140,18 +131,14 @@ AND A.NOTA = ALIAS.MAX_NOTA;
 ```
 
 ```
-+----------+-----------+---------------+------+
-| ID_ALUNO | NOME      | ID_DISCIPLINA | NOTA |
-+----------+-----------+---------------+------+
-| 4        | Mariana   | 201           | 8.5  |
-| 5        | Fernanda  | 202           | 9    |
-| 7        | João      | 206           | 7.5  |
-| 8        | Maria     | 204           | 8    |
-| 9        | Pedro     | 205           | 9.5  |
-| 10       | Lucia     | 208           | 8.5  |
-| 11       | Paulo     | 209           | 7    |
-| 12       | Carla     | 207           | 9    |
-+----------+-----------+---------------+------+
++----------+--------+--------------+------+
+| ID_ALUNO |  NOME  | ID_DISCIPLINA| NOTA |
++----------+--------+--------------+------+
+|    9     | Pedro  |     205      | 9.5  |
+|    10    | Lucia  |     208      | 8.5  |
+|    11    | Paulo  |     209      | 7.0  |
+|    12    | Carla  |     207      | 9.0  |
++----------+--------+--------------+------+
 ```
 
 ## Anti Join
@@ -168,9 +155,85 @@ WHERE D.ID NOT IN
 ```
 
 ```
-+-----------------+
-| NOME            |
-+-----------------+
-| F1(Física 1)    |
-+-----------------+
++----------------+
+|      NOME      |
++----------------+
+|   Física II    |
+|  Química Geral |
+| F1(Física 1)   |
+|   Cálculo I    |
+|   Algoritmos   |
++----------------+
+```
+
+# Operações de conjunto
+## Union
+Lista de professors e Alunos por union
+```sql
+SELECT U.ID, U.TIPO, P.NOME 
+FROM (
+    SELECT ID, 'ALUNO' AS TIPO FROM ALUNO
+    UNION 
+    SELECT ID, 'PROFESSOR' AS TIPO FROM PROFESSOR
+) U
+INNER JOIN PESSOA P ON U.ID = P.ID ORDER BY ID;
+```
+
+```
++-----+-----------+--------+
+| ID  |   TIPO    |  NOME  |
++-----+-----------+--------+
+|  1  | PROFESSOR | Carlos |
+|  2  | PROFESSOR |  Ana   |
+|  6  |  ALUNO    | Robson |
+|  7  | PROFESSOR |  João  |
+|  8  | PROFESSOR | Maria  |
+|  9  |  ALUNO    | Pedro  |
+| 10  |  ALUNO    | Lucia  |
+| 11  |  ALUNO    | Paulo  |
+| 12  |  ALUNO    | Carla  |
++-----+-----------+--------+
+```
+
+## Intersect
+Não retorna nada pois não tem aluno que é professor 
+```sql
+SELECT ID 
+FROM ALUNO 
+INTERSECT
+SELECT ID 
+FROM PROFESSOR;
+```
+
+```
+NOT FOUND
+```
+
+## Except
+Alunos que não estão na tabela de professores, como a herança é disjoint é o mesmo que ver a tabela de alunos apenas
+```sql
+SELECT P.ID, P.NOME, P.SOBRENOME FROM (
+SELECT ID 
+FROM ALUNO 
+    EXCEPT
+SELECT ID
+FROM PROFESSOR) U INNER JOIN PESSOA P ON (P.ID = U.ID);
+
+/* COM LEFT JOIN + IS NULL MESMA COISA DO COMANDO ACIMA  */
+SELECT A.ID , A.NOME
+FROM ALUNO A  LEFT JOIN PROFESSOR P ON A.ID = P.ID
+WHERE P.ID IS NULL;
+
+```
+
+```
++-----+--------+-----------+
+| ID  |  NOME  | SOBRENOME |
++-----+--------+-----------+
+|  6  | Robson |  Fidalgo  |
+|  9  | Pedro  |   Costa   |
+| 10  | Lucia  |  Martins  |
+| 11  | Paulo  |   Rocha   |
+| 12  | Carla  |   Lima    |
++-----+--------+-----------+
 ```

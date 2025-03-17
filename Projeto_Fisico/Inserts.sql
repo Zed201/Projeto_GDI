@@ -17,8 +17,7 @@ INSERT INTO professor (id, especializacao)
 VALUES (1, 'Matemática'),
        (2, 'Computação'),
        (7, 'Física'),
-       (8, 'Química'),
-       (9, 'Literatura');       
+       (8, 'Química');       
 
 -- Inserindo coordenadores
 INSERT INTO coordenador (id, departamento, nome_curso)
@@ -27,24 +26,15 @@ VALUES (3, 'Engenharia', 'Engenharia Civil');
 
 -- Inserindo alunos
 INSERT INTO aluno (id, curso_atual)
-VALUES (4, 'Ciência da Computação'),
-       (5, 'Engenharia Elétrica'),
-       (6, 'Teatro'),
-       (7, 'Engenharia Mecânica'),
-       (8, 'Administração'),
-       (9, 'Medicina'),
+VALUES 	(6, 'Engenharia'),
+	(9,'Medicina'),
        (10, 'Direito'),
        (11, 'Arquitetura'),
        (12, 'Psicologia');
 
 -- Inserindo telefones para alunos
 INSERT INTO telefones (id_aluno, numero)
-VALUES (4, '11999998888'),
-       (4, '11988887777'),
-       (5, '11977776666'),
-       (7, '11966665555'),
-       (8, '11955554444'),
-       (9, '11944443333'),
+VALUES (9, '11944443333'),
        (10, '11933332222'),
        (11, '11922221111'),
        (12, '11911110000');
@@ -77,8 +67,7 @@ INSERT INTO assume (id_professor, codigo_projeto, codigo_cargo)
 VALUES (1, 101, 1),
        (2, 102, 2),
        (7, 103, 3),
-       (8, 104, 4),
-       (9, 105, 5);
+       (8, 104, 4);
 
 -- Inserindo disciplinas
 INSERT INTO disciplina (id, nome, carga_horaria)
@@ -99,7 +88,6 @@ VALUES (1, 202),
 
 INSERT INTO monitora (id_monitor, id_disciplina, discriminador)
 VALUES (5, 202, 'Teoria'),
-       (6, 203, 'Prática'),
        (4, 201, 'Laboratório');
 
 -- Criando pré-requisitos para disciplinas
@@ -110,11 +98,7 @@ VALUES (201, 202),  -- Algoritmos é pré-requisito de Cálculo I
 
 -- Matriculando alunos em disciplinas
 INSERT INTO matricula (id_aluno, id_disciplina, codigo, dt_matricula)
-VALUES (4, 201, 1, TO_DATE('2024-02-01', 'YYYY-MM-DD')),
-       (5, 202, 2, TO_DATE('2024-02-02', 'YYYY-MM-DD')),
-       (7, 206, 3, TO_DATE('2024-02-03', 'YYYY-MM-DD')),
-       (8, 204, 4, TO_DATE('2024-02-04', 'YYYY-MM-DD')),
-       (9, 205, 5, TO_DATE('2024-02-05', 'YYYY-MM-DD')),
+VALUES (9, 205, 5, TO_DATE('2024-02-05', 'YYYY-MM-DD')),
        (10, 208, 6, TO_DATE('2024-02-06', 'YYYY-MM-DD')),
        (11, 209, 7, TO_DATE('2024-02-07', 'YYYY-MM-DD')),
        (12, 207, 8, TO_DATE('2024-02-08', 'YYYY-MM-DD'));
@@ -122,11 +106,7 @@ VALUES (4, 201, 1, TO_DATE('2024-02-01', 'YYYY-MM-DD')),
 
 -- Inserindo cotas
 INSERT INTO cota (tipo, id_aluno, id_disciplina)
-VALUES (1, 4, 201),
-       (2, 5, 202),
-       (3, 7, 206),
-       (4, 8, 204),
-       (5, 9, 205),
+VALUES (5, 9, 205),
        (6, 10, 208),
        (7, 11, 209),
        (8, 12, 207);
@@ -134,11 +114,8 @@ VALUES (1, 4, 201),
 
 -- Inserindo avaliações
 INSERT INTO avaliacao (id_disciplina, id_aluno, id, tipo, nota)
-VALUES (201, 4, 1, 'Prova', 8.5),
-       (202, 5, 1, 'Trabalho', 9.0),
-       (206, 7, 2, 'Prova', 7.5),
-       (204, 8, 2, 'Trabalho', 8.0),
-       (205, 9, 2, 'Seminário', 9.5),
+VALUES (205, 9, 2, 'Seminário', 9.5),
        (208, 10, 2, 'Prova', 8.5),
        (209, 11, 2, 'Trabalho', 7.0),
        (207, 12, 2, 'Prova', 9.0);
+
