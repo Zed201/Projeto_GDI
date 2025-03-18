@@ -147,6 +147,7 @@ BEGIN
 		
 		DBMS_OUTPUT.PUT_LINE(COD_PROJ);
 	END LOOP;
+	CLOSE CUR_PROJ;
 END;
 
 -- Apenas executa o procedimento acima para 1,1 deve mostrar no console 101 e para 2,2 deve mostrar 102
