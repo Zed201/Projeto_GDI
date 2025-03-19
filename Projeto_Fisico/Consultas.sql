@@ -7,6 +7,22 @@ INNER JOIN AVALIACAO A ON D.ID = A.ID_DISCIPLINA
 GROUP BY D.NOME
 HAVING AVG(A.NOTA) > 7;
 
+-- Consultando todos os monitores que são exclusivos do professor 2
+
+SELECT m.id_monitor
+FROM monitora m
+GROUP BY m.id_monitor
+HAVING COUNT(*) = COUNT(
+    CASE WHEN m.id_disciplina IN (
+        SELECT id_disciplina FROM (
+            SELECT id_disciplina FROM ensina
+            GROUP BY id_disciplina
+            HAVING COUNT(id_professor) = 1
+            AND MIN(id_professor) = 2
+            ))
+    THEN 1 
+    END);
+
 -- Juncao externa, alunos ainda sem prova e com inner join para ver o nome deles
 
 SELECT AL.ID,
