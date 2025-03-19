@@ -14,12 +14,11 @@ FROM monitora m
 GROUP BY m.id_monitor
 HAVING COUNT(*) = COUNT(
     CASE WHEN m.id_disciplina IN (
-        SELECT id_disciplina FROM (
             SELECT id_disciplina FROM ensina
             GROUP BY id_disciplina
             HAVING COUNT(id_professor) = 1
             AND MIN(id_professor) = 2
-            ))
+            )
     THEN 1 
     END);
 
