@@ -22,6 +22,25 @@ HAVING COUNT(*) = COUNT(
     THEN 1 
     END);
 
+-- Consultando os professores e seus monitores exclusivos
+
+SELECT E.ID_PROFESSOR, M.ID_MONITOR 
+FROM ENSINA E INNER JOIN MONITORA M ON E.ID_DISCIPLINA = M.ID_DISCIPLINA 
+WHERE M.ID_MONITOR IN (
+    SELECT m1.id_monitor
+    FROM monitora m1
+    GROUP BY m1.id_monitor
+    HAVING COUNT(*) = COUNT(
+        CASE WHEN m1.id_disciplina IN (
+                SELECT id_disciplina FROM ensina
+                GROUP BY id_disciplina
+                HAVING COUNT(id_professor) = 1
+                AND MIN(id_professor) = E.ID_PROFESSOR
+                )
+        THEN 1 
+        END)
+);
+
 -- Juncao externa, alunos ainda sem prova e com inner join para ver o nome deles
 
 SELECT AL.ID,
