@@ -75,7 +75,7 @@
     <links xmi:type="eer:InheritanceSL" xmi:id="_3KfJINWdEe-Fna31z1rCEw" source="_zp4wMNWdEe-Fna31z1rCEw"/>
     <links xmi:type="eer:RelationshipLink" xmi:id="_FJdlcNWeEe-Fna31z1rCEw" source="_zp4wMNWdEe-Fna31z1rCEw" target="_duzY8NWdEe-Fna31z1rCEw" cardinality="MANY"/>
     <links xmi:type="eer:RelationshipLink" xmi:id="_c_RHgNWfEe-7G-tfL2_npw" source="_1imHQNBYEe-Vg8L22VKIxA" target="_uQOlsNCAEe-TgePPuJNSRg" cardinality="MANY"/>
-    <links xmi:type="eer:RelationshipLink" xmi:id="_f5XhINWfEe-7G-tfL2_npw" source="_dvH3INWfEe-7G-tfL2_npw" target="_f5TPsNWfEe-7G-tfL2_npw" participation="TOTAL"/>
+    <links xmi:type="eer:RelationshipLink" xmi:id="_f5XhINWfEe-7G-tfL2_npw" source="_dvH3INWfEe-7G-tfL2_npw" target="_f5TPsNWfEe-7G-tfL2_npw"/>
     <links xmi:type="eer:RelationshipLink" xmi:id="_h-fakNWfEe-7G-tfL2_npw" source="_tvhFUNCAEe-TgePPuJNSRg" target="_f5TPsNWfEe-7G-tfL2_npw"/>
     <links xmi:type="eer:AttributeLink" xmi:id="_7TfT8NWfEe-7G-tfL2_npw" source="_dvH3INWfEe-7G-tfL2_npw" target="_6SpiANWfEe-7G-tfL2_npw"/>
     <links xmi:type="eer:RelationshipLink" xmi:id="_65wv4NWgEe-7G-tfL2_npw" source="_2GGMkNWgEe-7G-tfL2_npw" target="_5yjQMNWgEe-7G-tfL2_npw" cardinality="MANY"/>
